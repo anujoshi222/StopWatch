@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,92 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="myStopWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="CLR-cG-IdU">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textAttributes>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="StopWatch" id="F14-eK-rE7"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogq-q1-XPo">
+                                <rect key="frame" x="6" y="104" width="363" height="54"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1bg-fB-Mp9">
+                                <rect key="frame" x="16" y="575" width="64" height="76"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="108"/>
+                                <state key="normal" image="start.png"/>
+                                <connections>
+                                    <action selector="startStopAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="27U-1f-zwT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dE-Uf-f3n">
+                                <rect key="frame" x="299" y="569" width="60" height="88"/>
+                                <state key="normal" image="reset.png"/>
+                                <connections>
+                                    <action selector="resetButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p5r-kF-TSI"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="55E-Sa-aP5">
+                                <rect key="frame" x="4" y="176" width="365" height="391"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Xzc-GS-gyt"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ET5-O0-A3a"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ogq-q1-XPo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="6" id="068-Gt-vlA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="55E-Sa-aP5" secondAttribute="bottom" constant="100" id="10a-Y6-W8U"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ogq-q1-XPo" secondAttribute="trailing" constant="6" id="3og-qS-TT9"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="1bg-fB-Mp9" secondAttribute="bottom" constant="16" id="Ih9-4y-Tov"/>
+                            <constraint firstItem="ogq-q1-XPo" firstAttribute="top" secondItem="CLR-cG-IdU" secondAttribute="bottom" constant="40" id="Kfn-xm-snf"/>
+                            <constraint firstItem="1bg-fB-Mp9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="Lz3-CW-mFJ"/>
+                            <constraint firstItem="55E-Sa-aP5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="4" id="N1R-Ky-VA6"/>
+                            <constraint firstItem="8dE-Uf-f3n" firstAttribute="centerY" secondItem="1bg-fB-Mp9" secondAttribute="centerY" id="OkM-ym-Twl"/>
+                            <constraint firstItem="CLR-cG-IdU" firstAttribute="centerX" secondItem="ogq-q1-XPo" secondAttribute="centerX" id="S2E-1q-uGO"/>
+                            <constraint firstItem="55E-Sa-aP5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="176" id="VRw-sq-cND"/>
+                            <constraint firstItem="1bg-fB-Mp9" firstAttribute="top" secondItem="55E-Sa-aP5" secondAttribute="bottom" constant="8" symbolic="YES" id="WPv-qo-4H8"/>
+                            <constraint firstItem="55E-Sa-aP5" firstAttribute="trailing" secondItem="ogq-q1-XPo" secondAttribute="trailing" id="Z81-It-eQ8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8dE-Uf-f3n" secondAttribute="trailing" constant="16" id="bog-Z5-Kws"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8dE-Uf-f3n" secondAttribute="bottom" constant="10" id="cDO-2k-0Gs"/>
+                            <constraint firstItem="CLR-cG-IdU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="fTO-ye-3KQ"/>
+                            <constraint firstItem="CLR-cG-IdU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="g93-4X-dr6"/>
+                            <constraint firstItem="55E-Sa-aP5" firstAttribute="top" secondItem="ogq-q1-XPo" secondAttribute="bottom" constant="5" id="riX-QT-Gns"/>
+                            <constraint firstItem="ogq-q1-XPo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uYA-aR-h8L"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="lapsTableView" destination="55E-Sa-aP5" id="PI1-FF-iFJ"/>
+                        <outlet property="resetButton" destination="8dE-Uf-f3n" id="UQi-WK-kJZ"/>
+                        <outlet property="startStopButton" destination="1bg-fB-Mp9" id="y4j-16-W0X"/>
+                        <outlet property="stopwatchLabel" destination="ogq-q1-XPo" id="Pay-Zc-2w9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="reset.png" width="60" height="60"/>
+        <image name="start.png" width="64" height="64"/>
+    </resources>
 </document>
